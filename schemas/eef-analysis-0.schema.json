@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kemiller2002/Echelon-AI-Native-Enterprise-Design-Framework/schemas/eef-analysis-0.schema.json",
+  "title": "eef.analysis/0",
+  "description": "Intermediate representation emitted by `eef analyse`. Major version 0: unstable; consumers must reject unknown majors.",
+  "type": "object",
+  "required": ["schema", "model", "industry", "scope", "diagnostics", "evidence", "economics", "workflows"],
+  "properties": {
+    "schema": { "const": "eef.analysis/0" },
+    "model": { "type": "string" },
+    "industry": { "type": "string" },
+    "scope": { "type": "string" },
+    "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "economics": { "$ref": "#/$defs/economics" },
+    "workflows": { "type": "array", "items": { "$ref": "#/$defs/workflow" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1 },
+    "ids": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+    "diagnostic": {
+      "type": "object",
+      "required": ["code", "severity", "subject", "message"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^EEF[0-9]{3}$" },
+        "severity": { "enum": ["error", "warning", "advisory"] },
+        "subject": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "statement", "status", "confidence", "sources", "contradicts"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "statement": { "type": "string" },
+        "status": { "enum": ["fact", "claim", "assumption", "hypothesis", "recommendation"] },
+        "confidence": { "enum": ["very-low", "low", "medium", "high", "very-high"] },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["citation", "kind"],
+            "properties": {
+              "citation": { "type": "string" },
+              "locator": { "type": ["string", "null"] },
+              "kind": { "enum": ["primary", "secondary", "vendor-claim", "interview", "observation", "computed", "illustrative"] }
+            }
+          }
+        },
+        "contradicts": { "$ref": "#/$defs/ids" }
+      }
+    },
+    "basis": { "enum": ["verified", "reported", "assumed", "illustrative", "unsupported"] },
+    "cost": {
+      "type": "object",
+      "required": ["laborPerTxn", "machinePerTxn", "riskLossPerTxn", "fixedAnnual", "annualTotal", "annualVolume"],
+      "additionalProperties": { "type": "number" }
+    },
+    "scenario": {
+      "type": "object",
+      "required": ["name", "current", "redesign", "annualSavings"],
+      "properties": {
+        "name": { "type": "string" },
+        "current": { "$ref": "#/$defs/cost" },
+        "redesign": { "$ref": "#/$defs/cost" },
+        "annualSavings": { "type": "number" }
+      }
+    },
+    "economics": {
+      "type": "object",
+      "required": ["verdict", "expected", "adverse", "favourable", "breakEvenVolume", "sensitivities"],
+      "properties": {
+        "verdict": { "enum": ["robustly-superior", "superior-at-expected", "inferior-at-expected", "robustly-inferior"] },
+        "expected": { "$ref": "#/$defs/scenario" },
+        "adverse": { "$ref": "#/$defs/scenario" },
+        "favourable": { "$ref": "#/$defs/scenario" },
+        "breakEvenVolume": { "type": ["number", "null"] },
+        "sensitivities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["lever", "savingsAtLow", "savingsAtHigh", "flipsConclusion", "basis"],
+            "properties": {
+              "lever": { "type": "string" },
+              "savingsAtLow": { "type": "number" },
+              "savingsAtHigh": { "type": "number" },
+              "flipsConclusion": { "type": "boolean" },
+              "basis": { "$ref": "#/$defs/basis" }
+            }
+          }
+        }
+      }
+    },
+    "executor": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "external-party",
+            "deterministic-software",
+            "ai-assisted-human",
+            "agent-screen-human-clearance",
+            "supervised-agent",
+            "authorized-human",
+            "independent-verification"
+          ]
+        },
+        "role": { "type": ["string", "null"] },
+        "decidingRule": { "type": "string" },
+        "trace": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["steps", "humanHandoffs", "humanTouches", "stages", "expectedDelayMinutes"]
+    },
+    "redesign": {
+      "type": "object",
+      "required": ["workflow", "classification", "structuralChange", "necessaryData", "dispositions", "steps", "before", "after"],
+      "properties": {
+        "workflow": { "$ref": "#/$defs/id" },
+        "classification": { "enum": ["workflow-redundant", "reinvention", "partial-reinvention", "superficial-automation", "no-change"] },
+        "structuralChange": { "type": "number", "minimum": 0 },
+        "necessaryData": { "$ref": "#/$defs/ids" },
+        "dispositions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["activity", "disposition", "reason"],
+            "properties": {
+              "activity": { "$ref": "#/$defs/id" },
+              "disposition": { "enum": ["retained", "eliminated", "merged", "replaced-by-event"] },
+              "reason": { "type": "string" }
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "stage", "dependsOn", "absorbed", "executor"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "name": { "type": "string" },
+              "stage": { "type": "integer", "minimum": 1 },
+              "dependsOn": { "$ref": "#/$defs/ids" },
+              "absorbed": { "$ref": "#/$defs/ids" },
+              "executor": { "$ref": "#/$defs/executor" }
+            }
+          }
+        },
+        "before": { "$ref": "#/$defs/metrics" },
+        "after": { "$ref": "#/$defs/metrics" }
+      }
+    },
+    "architecture": {
+      "type": "object",
+      "required": ["workflow", "capabilities", "apis", "events", "agents", "grants", "controls", "trace", "roadmap", "violations"],
+      "properties": {
+        "apis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "permission", "step", "requiresHumanAuthority", "forbidsAiClearance"]
+          }
+        },
+        "grants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["principal", "api", "right"],
+            "properties": {
+              "principal": { "type": "string", "pattern": "^(role|agent|service):" },
+              "right": { "enum": ["execute", "approve"] }
+            }
+          }
+        },
+        "violations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "lens": {
+      "type": "object",
+      "required": ["lens", "method", "stance", "recommendation", "findings", "limitations"],
+      "properties": {
+        "stance": { "enum": ["proceed", "proceed-with-safeguards", "defer", "reject"] },
+        "limitations": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "simulation": {
+      "type": "object",
+      "required": ["label", "transactions", "meanCycleMinutes", "p50CycleMinutes", "p90CycleMinutes", "humanMinutesPerTxn", "utilization"]
+    },
+    "workflow": {
+      "type": "object",
+      "required": ["redesign", "architecture", "lenses", "disagreements", "simulation"],
+      "properties": {
+        "redesign": { "$ref": "#/$defs/redesign" },
+        "architecture": { "$ref": "#/$defs/architecture" },
+        "lenses": { "type": "array", "items": { "$ref": "#/$defs/lens" } },
+        "disagreements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["topic", "positions"],
+            "properties": {
+              "positions": { "type": "array", "minItems": 2 }
+            }
+          }
+        },
+        "simulation": { "type": "array", "items": { "$ref": "#/$defs/simulation" } }
+      }
+    }
+  }
+}
