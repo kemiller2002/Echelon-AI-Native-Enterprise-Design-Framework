@@ -23,11 +23,15 @@ jobs:
         run: dotnet tool restore
       - name: Format check
         run: dotnet fantomas --check src tests case-studies
+      - name: Build
+        # `dotnet test` builds only test projects and their references; the
+        # CLI used below must be built explicitly.
+        run: dotnet build Echelon.Enterprise.sln -c Release
       - name: Test
         shell: bash
         run: |
           set -euo pipefail
-          dotnet test Echelon.Enterprise.sln -c Release --logger "trx;LogFileName=results.trx" | tee test.log
+          dotnet test Echelon.Enterprise.sln -c Release --no-build --logger "trx;LogFileName=results.trx" | tee test.log
           grep -Eq "Passed: *[1-9][0-9]*" test.log || { echo "No tests ran"; exit 1; }
           if grep -Eq "Skipped: *[1-9]" test.log; then echo "Skipped tests are not allowed"; exit 1; fi
       - name: Generated outputs are current
