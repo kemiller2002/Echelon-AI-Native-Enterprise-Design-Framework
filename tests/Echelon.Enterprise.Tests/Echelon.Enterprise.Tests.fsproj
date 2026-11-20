@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Fixtures.fs" />
+    <Compile Include="ValidationTests.fs" />
+    <Compile Include="ResponsibilityTests.fs" />
+    <Compile Include="ReinventionTests.fs" />
+    <Compile Include="EconomicsTests.fs" />
+    <Compile Include="ArchitectureTests.fs" />
+    <Compile Include="SimulationTests.fs" />
+    <Compile Include="LensAndOutputTests.fs" />
+    <Compile Include="PropertyTests.fs" />
+    <Compile Include="DafCaseStudyTests.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Echelon.Enterprise/Echelon.Enterprise.fsproj" />
+    <ProjectReference Include="../../case-studies/Echelon.Enterprise.CaseStudies/Echelon.Enterprise.CaseStudies.fsproj" />
+  </ItemGroup>
+</Project>
