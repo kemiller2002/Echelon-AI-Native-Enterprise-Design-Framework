@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>eef</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Echelon.Enterprise/Echelon.Enterprise.fsproj" />
+    <ProjectReference Include="../../case-studies/Echelon.Enterprise.CaseStudies/Echelon.Enterprise.CaseStudies.fsproj" />
+  </ItemGroup>
+</Project>
