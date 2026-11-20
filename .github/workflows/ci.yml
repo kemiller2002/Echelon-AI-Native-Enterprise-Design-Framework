@@ -1,0 +1,41 @@
+name: CI
+
+# Formatting, build, tests, and a check that committed generated outputs are
+# current. An empty or skipped test run fails.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Format check
+        run: dotnet fantomas --check src tests case-studies
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet test Echelon.Enterprise.sln -c Release --logger "trx;LogFileName=results.trx" | tee test.log
+          grep -Eq "Passed: *[1-9][0-9]*" test.log || { echo "No tests ran"; exit 1; }
+          if grep -Eq "Skipped: *[1-9]" test.log; then echo "Skipped tests are not allowed"; exit 1; fi
+      - name: Generated outputs are current
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet run --project src/Echelon.Enterprise.Cli -c Release --no-build -- analyse all
+          dotnet run --project src/Echelon.Enterprise.Cli -c Release --no-build -- export-eks all
+          git diff --exit-code -- case-studies
+      - name: Vulnerable packages
+        run: dotnet list Echelon.Enterprise.sln package --vulnerable --include-transitive
