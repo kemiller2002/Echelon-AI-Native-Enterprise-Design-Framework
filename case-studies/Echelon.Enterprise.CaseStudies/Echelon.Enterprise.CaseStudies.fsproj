@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Case studies authored as typed F# values: the compiler checks reference
+       kinds and units; Validation checks the rest. -->
+  <ItemGroup>
+    <Compile Include="Daf.fs" />
+    <Compile Include="Catalog.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Echelon.Enterprise/Echelon.Enterprise.fsproj" />
+  </ItemGroup>
+</Project>

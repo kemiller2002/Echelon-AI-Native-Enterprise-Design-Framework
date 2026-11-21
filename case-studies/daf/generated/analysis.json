@@ -1,0 +1,1976 @@
+{
+  "schema": "eef.analysis/0",
+  "model": "Representative DAF sponsor: grant disbursement",
+  "industry": "Donor-advised funds (US)",
+  "scope": "Grant recommendation through payment, reconciliation and record retention",
+  "diagnostics": [
+    {
+      "code": "EEF015",
+      "severity": "warning",
+      "subject": "A21",
+      "message": "Claims to satisfy \u0027C-SPONSOR-LEGAL-CONTROL\u0027 without using required information \u0027D-PURPOSE-ASSESSMENT\u0027."
+    },
+    {
+      "code": "EEF010",
+      "severity": "advisory",
+      "subject": "EV-DAF-007",
+      "message": "Contradicts \u0027EV-DAF-011\u0027. Preserved; not resolved by the framework."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-DAF-001",
+      "statement": "IRC 4966 imposes a 20% tax on the sponsor for a taxable distribution and 5% (capped at $10k) on a knowing manager.",
+      "status": "fact",
+      "confidence": "high",
+      "sources": [
+        {
+          "citation": "26 U.S.C. \u00A74966",
+          "locator": "https://www.law.cornell.edu/uscode/text/26/4966",
+          "kind": "primary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-002",
+      "statement": "IRC 4967 imposes a 125% tax on a donor or adviser receiving a prohibited benefit and 10% on a knowing manager.",
+      "status": "fact",
+      "confidence": "high",
+      "sources": [
+        {
+          "citation": "26 U.S.C. \u00A74967",
+          "locator": "https://www.law.cornell.edu/uscode/text/26/4967",
+          "kind": "primary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-003",
+      "statement": "Grants to listed \u00A7170(b)(1)(A) public charities are excepted from \u00A74966 and grantors may rely on IRS status listings.",
+      "status": "claim",
+      "confidence": "high",
+      "sources": [
+        {
+          "citation": "26 U.S.C. \u00A74966",
+          "locator": "https://www.law.cornell.edu/uscode/text/26/4966",
+          "kind": "primary"
+        },
+        {
+          "citation": "Rev. Proc. 2018-32 summary, as recorded in the DAF industry report",
+          "locator": "daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:159",
+          "kind": "secondary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-004",
+      "statement": "Sponsors review each recommendation for recipient identity, legal eligibility, purpose and private benefit before approval (normalised stages).",
+      "status": "fact",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "Synthesis of published sponsor policies (Fidelity, Vanguard, DAFgiving360, NPT, AEF)",
+          "locator": "daf-landscape:research/batch-2a-charity-vetting-grant-approval-2026-11-12.md:11-43",
+          "kind": "secondary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-005",
+      "statement": "RCF policy (March 2023): an RCF officer personally reviews and authorises grants over $500,000.",
+      "status": "fact",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "RCF risk policy, March 2023, as recorded in the corpus",
+          "locator": "daf-landscape:research/ren-instant-grant-approval-rcf-policy-clarity-audit-2026-11-12.md:24",
+          "kind": "primary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-006",
+      "statement": "Control rule: AI may add a flag, never clear one; approval authority must stay human or deterministic.",
+      "status": "recommendation",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "daf-landscape governance analysis of 16 AI failure modes",
+          "locator": "daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:228-232",
+          "kind": "computed"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-007",
+      "statement": "Approval cadence conflicts across Ren-administered programmes: trustees approve weekly (UBS circular), daily (NWM circular), and Ren claims over half of grants are approved instantly.",
+      "status": "claim",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "Ren website and programme circulars, as recorded in the corpus",
+          "locator": "daf-landscape:research/ren-instant-grant-approval-rcf-policy-clarity-audit-2026-11-12.md:17-21",
+          "kind": "vendor-claim"
+        }
+      ],
+      "contradicts": [
+        "EV-DAF-011"
+      ]
+    },
+    {
+      "id": "EV-DAF-008",
+      "statement": "Operating cost per grant in FY2024 990 data: Fidelity Charitable $68, DAFgiving360 $55, Vanguard Charitable $134, NPT $419.",
+      "status": "fact",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "Computed by daf-landscape from IRS e-file Part IX data",
+          "locator": "daf-landscape:research/mission-2026-11-14/sponsor-cost-structure-and-sensitivities.md:13-14",
+          "kind": "computed"
+        },
+        {
+          "citation": "IRS Form 990 e-file XML (GivingTuesday mirror)",
+          "locator": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202521349349310887_public.xml",
+          "kind": "primary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-009",
+      "statement": "Recipients not on standard IRS lists (churches, subordinates, foreign, fiscal sponsors) are 7.4% of grant recipient lines on the core proxy and 25.1% on the broad proxy.",
+      "status": "claim",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "990 Schedule I exception-load proxy (counts recipients, not observed reviews)",
+          "locator": "daf-landscape:research/mission-2026-11-14/gap19-exception-load-proxy.md:39-40",
+          "kind": "computed"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-010",
+      "statement": "Inference costs about $0.45 per heavy document review against about $83 of reviewer time.",
+      "status": "claim",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "daf-landscape AI process economics, using published API and BLS prices",
+          "locator": "daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:225",
+          "kind": "computed"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-011",
+      "statement": "Published review timing: Fidelity may take 10\u002B business days; Vanguard most within 2 business days; NPT 2\u20135 days; AEF 5\u201310 business days including an adviser liquidity handoff.",
+      "status": "fact",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "Sponsor grant policy pages, as recorded in the corpus",
+          "locator": "daf-landscape:research/batch-2a-charity-vetting-grant-approval-2026-11-12.md:11-15",
+          "kind": "primary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-012",
+      "statement": "No sponsor publishes grant turnaround distributions, exception rates or reviewer minutes.",
+      "status": "fact",
+      "confidence": "high",
+      "sources": [
+        {
+          "citation": "daf-landscape absence finding, validation wave 21",
+          "locator": "daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:220",
+          "kind": "secondary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-013",
+      "statement": "Hands-on minutes, queue delays and exception rates per activity in the composite workflow.",
+      "status": "assumption",
+      "confidence": "low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-014",
+      "statement": "Loaded labour cost of $55\u2013$95 per hour for grants operations, due-diligence and compliance roles.",
+      "status": "assumption",
+      "confidence": "low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-015",
+      "statement": "A representative mid-sized sponsor processes 20,000\u201360,000 grants per year.",
+      "status": "assumption",
+      "confidence": "low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-016",
+      "statement": "AI assistance leaves 30\u201370% of human review effort on cases a human still handles.",
+      "status": "hypothesis",
+      "confidence": "low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-017",
+      "statement": "Platform, evaluation and monitoring costs for the redesign; one-time build cost amortised over 3 years.",
+      "status": "assumption",
+      "confidence": "low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-018",
+      "statement": "Probability and cost of an undetected material grant error (taxable distribution, misdirected payment).",
+      "status": "assumption",
+      "confidence": "very-low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        },
+        {
+          "citation": "Detection probability of an escaped \u00A74966 error estimated at about 0.1\u20131% per year",
+          "locator": "daf-landscape:research/mission-2026-11-14/g0403-0104-m-detection-ofac.md:22-37",
+          "kind": "computed"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-019",
+      "statement": "No sponsor publishes a mandatory callback before a charity bank-account change; charity-side bank-change checks cover 29.8% of assets.",
+      "status": "fact",
+      "confidence": "medium",
+      "sources": [
+        {
+          "citation": "daf-landscape fraud and diversion controls review",
+          "locator": "daf-landscape:research/mission-2026-11-14/b49-04-fraud-diversion-controls.md:25-33",
+          "kind": "secondary"
+        }
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "EV-DAF-020",
+      "statement": "Agent escalation share, escalation effort, and per-step inference and software costs.",
+      "status": "assumption",
+      "confidence": "low",
+      "sources": [
+        {
+          "citation": "Illustrative modelling value chosen for this case study; not measured.",
+          "locator": null,
+          "kind": "illustrative"
+        },
+        {
+          "citation": "Order-of-magnitude anchor for inference cost",
+          "locator": "daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:225",
+          "kind": "computed"
+        }
+      ],
+      "contradicts": []
+    }
+  ],
+  "economics": {
+    "verdict": "superior-at-expected",
+    "expected": {
+      "name": "expected",
+      "current": {
+        "laborPerTxn": 45.0267,
+        "machinePerTxn": 0.01,
+        "riskLossPerTxn": 2.5,
+        "fixedAnnual": 90000,
+        "annualTotal": 1991466.6667,
+        "annualVolume": 40000
+      },
+      "redesign": {
+        "laborPerTxn": 1.1712,
+        "machinePerTxn": 0.28,
+        "riskLossPerTxn": 1.5,
+        "fixedAnnual": 293333.3333,
+        "annualTotal": 411383.3333,
+        "annualVolume": 40000
+      },
+      "annualSavings": 1580083.3333
+    },
+    "adverse": {
+      "name": "adverse",
+      "current": {
+        "laborPerTxn": 16.8421,
+        "machinePerTxn": 0.05,
+        "riskLossPerTxn": 0.1,
+        "fixedAnnual": 60000,
+        "annualTotal": 399841.6667,
+        "annualVolume": 20000
+      },
+      "redesign": {
+        "laborPerTxn": 0.3095,
+        "machinePerTxn": 1.4,
+        "riskLossPerTxn": 2,
+        "fixedAnnual": 500000,
+        "annualTotal": 574189.1667,
+        "annualVolume": 20000
+      },
+      "annualSavings": -174347.5
+    },
+    "favourable": {
+      "name": "favourable",
+      "current": {
+        "laborPerTxn": 142.5658,
+        "machinePerTxn": 0.001,
+        "riskLossPerTxn": 50,
+        "fixedAnnual": 120000,
+        "annualTotal": 11674010,
+        "annualVolume": 60000
+      },
+      "redesign": {
+        "laborPerTxn": 4.3728,
+        "machinePerTxn": 0.048,
+        "riskLossPerTxn": 1.25,
+        "fixedAnnual": 183333.3333,
+        "annualTotal": 523578.3333,
+        "annualVolume": 60000
+      },
+      "annualSavings": 11150431.6667
+    },
+    "breakEvenVolume": 4560.5346,
+    "sensitivities": [
+      {
+        "lever": "volume",
+        "savingsAtLow": 688375,
+        "savingsAtHigh": 2471791.6667,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "labor-rates",
+        "savingsAtLow": 1257716.6667,
+        "savingsAtHigh": 2032050,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "effort",
+        "savingsAtLow": 650025,
+        "savingsAtHigh": 3994133.3333,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "exception-rates",
+        "savingsAtLow": 1555083.3333,
+        "savingsAtHigh": 1633983.3333,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "assisted-effort-factor",
+        "savingsAtLow": 1598823.3333,
+        "savingsAtHigh": 1561343.3333,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "agent-escalation-rate",
+        "savingsAtLow": 1580083.3333,
+        "savingsAtHigh": 1580083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "escalation-effort",
+        "savingsAtLow": 1580083.3333,
+        "savingsAtHigh": 1580083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "inference-cost-agent",
+        "savingsAtLow": 1583283.3333,
+        "savingsAtHigh": 1564083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "inference-cost-assisted",
+        "savingsAtLow": 1583283.3333,
+        "savingsAtHigh": 1564083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "deterministic-cost",
+        "savingsAtLow": 1582603.3333,
+        "savingsAtHigh": 1568883.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "current-fixed",
+        "savingsAtLow": 1550083.3333,
+        "savingsAtHigh": 1610083.3333,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "redesign-fixed",
+        "savingsAtLow": 1640083.3333,
+        "savingsAtHigh": 1490083.3333,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "redesign-one-time",
+        "savingsAtLow": 1630083.3333,
+        "savingsAtHigh": 1463416.6667,
+        "flipsConclusion": false,
+        "basis": "illustrative"
+      },
+      {
+        "lever": "current-error-rate",
+        "savingsAtLow": 1500083.3333,
+        "savingsAtHigh": 1880083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "redesign-error-rate",
+        "savingsAtLow": 1630083.3333,
+        "savingsAtHigh": 1240083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      },
+      {
+        "lever": "loss-per-error",
+        "savingsAtLow": 1548083.3333,
+        "savingsAtHigh": 1740083.3333,
+        "flipsConclusion": false,
+        "basis": "assumed"
+      }
+    ]
+  },
+  "workflows": [
+    {
+      "redesign": {
+        "workflow": "WF-DAF-GRANT",
+        "classification": "reinvention",
+        "structuralChange": 0.5455,
+        "necessaryData": [
+          "D-CHARITY-REFERENCE",
+          "D-ELIGIBILITY-RESULT",
+          "D-FUND-ACCOUNT",
+          "D-FUNDS-AVAILABLE",
+          "D-GRANT-APPROVAL",
+          "D-GRANT-RECOMMENDATION",
+          "D-GRANT-RECORD",
+          "D-LARGE-GRANT-AUTHORIZATION",
+          "D-PAYEE-BANK-DETAILS",
+          "D-PAYEE-VERIFICATION",
+          "D-PAYMENT",
+          "D-PURPOSE-ASSESSMENT",
+          "D-RECIPIENT-REMITTANCE",
+          "D-REDEMPTION-ORDER",
+          "D-REQUEST-VALIDATION"
+        ],
+        "dispositions": [
+          {
+            "activity": "A01",
+            "disposition": "replaced-by-event",
+            "reason": "handoff removed: shared system of record and an event replace re-keying and forwarding"
+          },
+          {
+            "activity": "A02",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A03",
+            "disposition": "eliminated",
+            "reason": "rework prevented at source by validation at capture (hypothesis)"
+          },
+          {
+            "activity": "A04",
+            "disposition": "replaced-by-event",
+            "reason": "internal queue removed: the next step is triggered by an event"
+          },
+          {
+            "activity": "A05",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A06",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A07",
+            "disposition": "replaced-by-event",
+            "reason": "handoff removed: shared system of record and an event replace re-keying and forwarding"
+          },
+          {
+            "activity": "A08",
+            "disposition": "merged",
+            "reason": "duplicates information or a control already established (into A05)"
+          },
+          {
+            "activity": "A09",
+            "disposition": "replaced-by-event",
+            "reason": "internal queue removed: the next step is triggered by an event"
+          },
+          {
+            "activity": "A10",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A11",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A12",
+            "disposition": "replaced-by-event",
+            "reason": "status published as an event; interested parties subscribe"
+          },
+          {
+            "activity": "A13",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A14",
+            "disposition": "retained",
+            "reason": "external latency is a constraint outside the enterprise\u0027s control"
+          },
+          {
+            "activity": "A15",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A16",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A17",
+            "disposition": "replaced-by-event",
+            "reason": "handoff removed: shared system of record and an event replace re-keying and forwarding"
+          },
+          {
+            "activity": "A18",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A19",
+            "disposition": "retained",
+            "reason": "the notification itself is required information"
+          },
+          {
+            "activity": "A20",
+            "disposition": "retained",
+            "reason": "external latency is a constraint outside the enterprise\u0027s control"
+          },
+          {
+            "activity": "A21",
+            "disposition": "retained",
+            "reason": "required by the outcome, a decision or a governing constraint"
+          },
+          {
+            "activity": "A22",
+            "disposition": "eliminated",
+            "reason": "produces no information required by the outcome, a decision or a governing constraint"
+          }
+        ],
+        "steps": [
+          {
+            "id": "A02",
+            "name": "Validate adviser authority, fund balance, amount and required fields",
+            "stage": 1,
+            "dependsOn": [],
+            "absorbed": [],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          },
+          {
+            "id": "A05",
+            "name": "Verify recipient identity, IRS status (BMF, Pub 78, auto-revocation) and OFAC",
+            "stage": 1,
+            "dependsOn": [],
+            "absorbed": [
+              "A08"
+            ],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          },
+          {
+            "id": "A06",
+            "name": "Review grant purpose and prohibited or private benefit",
+            "stage": 2,
+            "dependsOn": [
+              "A05"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "agent-screen-human-clearance",
+              "role": "R-DUE-DILIGENCE-ANALYST",
+              "decidingRule": "R4a no-automated-clearance (bounded): agent may raise flags on reversible, sub-major work; a human clears them",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "not applicable: R3 deterministic: rule-specifiable over structured inputs",
+                "applied: R4a no-automated-clearance (bounded): agent may raise flags on reversible, sub-major work; a human clears them"
+              ]
+            }
+          },
+          {
+            "id": "A10",
+            "name": "Approve or deny the grant under sponsor policy",
+            "stage": 3,
+            "dependsOn": [
+              "A02",
+              "A05",
+              "A06"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          },
+          {
+            "id": "A11",
+            "name": "Officer authorises grants above the large-grant threshold",
+            "stage": 4,
+            "dependsOn": [
+              "A10"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "authorized-human",
+              "role": "R-SPONSOR-OFFICER",
+              "decidingRule": "R1 human-authority: a governing obligation names an accountable human role",
+              "trace": [
+                "applied: R1 human-authority: a governing obligation names an accountable human role"
+              ]
+            }
+          },
+          {
+            "id": "A13",
+            "name": "Place a redemption order to raise cash for the grant",
+            "stage": 4,
+            "dependsOn": [
+              "A10"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          },
+          {
+            "id": "A14",
+            "name": "Wait for the custodian to settle the redemption",
+            "stage": 5,
+            "dependsOn": [
+              "A13"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "external-party"
+            }
+          },
+          {
+            "id": "A15",
+            "name": "Custodian confirms settled cash is available",
+            "stage": 6,
+            "dependsOn": [
+              "A13",
+              "A14"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "external-party"
+            }
+          },
+          {
+            "id": "A16",
+            "name": "Verify the payee bank account independently of the grant preparer",
+            "stage": 1,
+            "dependsOn": [],
+            "absorbed": [],
+            "executor": {
+              "kind": "independent-verification",
+              "role": null,
+              "decidingRule": "R2 independence: the obligation requires a check independent of the preparer",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "applied: R2 independence: the obligation requires a check independent of the preparer"
+              ]
+            }
+          },
+          {
+            "id": "A18",
+            "name": "Release payment (ACH, check or processor)",
+            "stage": 7,
+            "dependsOn": [
+              "A10",
+              "A11",
+              "A15",
+              "A16"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          },
+          {
+            "id": "A19",
+            "name": "Send the recipient a grant letter with remittance detail",
+            "stage": 8,
+            "dependsOn": [
+              "A18"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          },
+          {
+            "id": "A20",
+            "name": "Wait for the recipient to deposit or claim the payment",
+            "stage": 9,
+            "dependsOn": [
+              "A19"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "external-party"
+            }
+          },
+          {
+            "id": "A21",
+            "name": "Reconcile the payment against the ledger and file the grant record",
+            "stage": 10,
+            "dependsOn": [
+              "A18",
+              "A10",
+              "A20"
+            ],
+            "absorbed": [],
+            "executor": {
+              "kind": "deterministic-software",
+              "role": null,
+              "decidingRule": "R3 deterministic: rule-specifiable over structured inputs",
+              "trace": [
+                "not applicable: R1 human-authority: a governing obligation names an accountable human role",
+                "not applicable: R2 independence: the obligation requires a check independent of the preparer",
+                "applied: R3 deterministic: rule-specifiable over structured inputs"
+              ]
+            }
+          }
+        ],
+        "before": {
+          "steps": 22,
+          "humanHandoffs": 9,
+          "humanTouches": 18,
+          "stages": 22,
+          "expectedDelayMinutes": 15240
+        },
+        "after": {
+          "steps": 13,
+          "humanHandoffs": 1,
+          "humanTouches": 1,
+          "stages": 10,
+          "expectedDelayMinutes": 10560
+        }
+      },
+      "architecture": {
+        "workflow": "WF-DAF-GRANT",
+        "capabilities": [
+          "CAP-GRANT-INTAKE",
+          "CAP-RECIPIENT-DILIGENCE",
+          "CAP-GRANT-AUTHORIZATION",
+          "CAP-FUND-LIQUIDITY",
+          "CAP-DISBURSEMENT",
+          "CAP-FUND-ACCOUNTING"
+        ],
+        "apis": [
+          {
+            "id": "API-A02",
+            "name": "Verify Request validation",
+            "capability": "CAP-GRANT-INTAKE",
+            "inputs": [
+              "D-GRANT-RECOMMENDATION",
+              "D-FUND-ACCOUNT"
+            ],
+            "outputs": [
+              "D-REQUEST-VALIDATION"
+            ],
+            "permission": "grant-intake.api-a02",
+            "step": "A02",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A05",
+            "name": "Verify Eligibility result",
+            "capability": "CAP-RECIPIENT-DILIGENCE",
+            "inputs": [
+              "D-GRANT-RECOMMENDATION",
+              "D-CHARITY-REFERENCE"
+            ],
+            "outputs": [
+              "D-ELIGIBILITY-RESULT"
+            ],
+            "permission": "recipient-diligence.api-a05",
+            "step": "A05",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A06",
+            "name": "Verify Purpose assessment",
+            "capability": "CAP-RECIPIENT-DILIGENCE",
+            "inputs": [
+              "D-GRANT-RECOMMENDATION",
+              "D-ELIGIBILITY-RESULT"
+            ],
+            "outputs": [
+              "D-PURPOSE-ASSESSMENT"
+            ],
+            "permission": "recipient-diligence.api-a06",
+            "step": "A06",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": true
+          },
+          {
+            "id": "API-A06-SCREEN",
+            "name": "Raise flags for Verify Purpose assessment",
+            "capability": "CAP-RECIPIENT-DILIGENCE",
+            "inputs": [
+              "D-GRANT-RECOMMENDATION",
+              "D-ELIGIBILITY-RESULT"
+            ],
+            "outputs": [],
+            "permission": "recipient-diligence.api-a06-screen",
+            "step": "A06",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A10",
+            "name": "Decide Grant approval",
+            "capability": "CAP-GRANT-AUTHORIZATION",
+            "inputs": [
+              "D-REQUEST-VALIDATION",
+              "D-ELIGIBILITY-RESULT",
+              "D-PURPOSE-ASSESSMENT"
+            ],
+            "outputs": [
+              "D-GRANT-APPROVAL"
+            ],
+            "permission": "grant-authorisation.api-a10",
+            "step": "A10",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A11",
+            "name": "Decide Large grant authorization",
+            "capability": "CAP-GRANT-AUTHORIZATION",
+            "inputs": [
+              "D-GRANT-APPROVAL"
+            ],
+            "outputs": [
+              "D-LARGE-GRANT-AUTHORIZATION"
+            ],
+            "permission": "grant-authorisation.api-a11",
+            "step": "A11",
+            "requiresHumanAuthority": "R-SPONSOR-OFFICER",
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A13",
+            "name": "Record Redemption order",
+            "capability": "CAP-FUND-LIQUIDITY",
+            "inputs": [
+              "D-GRANT-APPROVAL",
+              "D-FUND-ACCOUNT"
+            ],
+            "outputs": [
+              "D-REDEMPTION-ORDER"
+            ],
+            "permission": "fund-liquidity.api-a13",
+            "step": "A13",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A16",
+            "name": "Verify Payee verification",
+            "capability": "CAP-DISBURSEMENT",
+            "inputs": [
+              "D-PAYEE-BANK-DETAILS"
+            ],
+            "outputs": [
+              "D-PAYEE-VERIFICATION"
+            ],
+            "permission": "disbursement.api-a16",
+            "step": "A16",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A18",
+            "name": "Record Payment",
+            "capability": "CAP-DISBURSEMENT",
+            "inputs": [
+              "D-GRANT-APPROVAL",
+              "D-LARGE-GRANT-AUTHORIZATION",
+              "D-FUNDS-AVAILABLE",
+              "D-PAYEE-VERIFICATION"
+            ],
+            "outputs": [
+              "D-PAYMENT"
+            ],
+            "permission": "disbursement.api-a18",
+            "step": "A18",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A19",
+            "name": "Notify Recipient remittance",
+            "capability": "CAP-DISBURSEMENT",
+            "inputs": [
+              "D-PAYMENT",
+              "D-GRANT-RECOMMENDATION"
+            ],
+            "outputs": [
+              "D-RECIPIENT-REMITTANCE"
+            ],
+            "permission": "disbursement.api-a19",
+            "step": "A19",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          },
+          {
+            "id": "API-A21",
+            "name": "Verify Reconciliation and Grant record",
+            "capability": "CAP-FUND-ACCOUNTING",
+            "inputs": [
+              "D-PAYMENT",
+              "D-GRANT-APPROVAL"
+            ],
+            "outputs": [
+              "D-RECONCILIATION",
+              "D-GRANT-RECORD"
+            ],
+            "permission": "fund-accounting-and-records.api-a21",
+            "step": "A21",
+            "requiresHumanAuthority": null,
+            "forbidsAiClearance": false
+          }
+        ],
+        "events": [
+          {
+            "name": "RequestValidationRecorded",
+            "data": "D-REQUEST-VALIDATION",
+            "producer": "A02",
+            "consumers": [
+              "A10"
+            ]
+          },
+          {
+            "name": "EligibilityResultRecorded",
+            "data": "D-ELIGIBILITY-RESULT",
+            "producer": "A05",
+            "consumers": [
+              "A06",
+              "A10"
+            ]
+          },
+          {
+            "name": "PurposeAssessmentRecorded",
+            "data": "D-PURPOSE-ASSESSMENT",
+            "producer": "A06",
+            "consumers": [
+              "A10"
+            ]
+          },
+          {
+            "name": "GrantApprovalRecorded",
+            "data": "D-GRANT-APPROVAL",
+            "producer": "A10",
+            "consumers": [
+              "A11",
+              "A13",
+              "A18",
+              "A21"
+            ]
+          },
+          {
+            "name": "LargeGrantAuthorizationRecorded",
+            "data": "D-LARGE-GRANT-AUTHORIZATION",
+            "producer": "A11",
+            "consumers": [
+              "A18"
+            ]
+          },
+          {
+            "name": "RedemptionOrderRecorded",
+            "data": "D-REDEMPTION-ORDER",
+            "producer": "A13",
+            "consumers": [
+              "A15"
+            ]
+          },
+          {
+            "name": "FundsAvailableRecorded",
+            "data": "D-FUNDS-AVAILABLE",
+            "producer": "A15",
+            "consumers": [
+              "A18"
+            ]
+          },
+          {
+            "name": "PayeeVerificationRecorded",
+            "data": "D-PAYEE-VERIFICATION",
+            "producer": "A16",
+            "consumers": [
+              "A18"
+            ]
+          },
+          {
+            "name": "PaymentRecorded",
+            "data": "D-PAYMENT",
+            "producer": "A18",
+            "consumers": [
+              "A19",
+              "A21"
+            ]
+          },
+          {
+            "name": "RecipientRemittanceRecorded",
+            "data": "D-RECIPIENT-REMITTANCE",
+            "producer": "A19",
+            "consumers": []
+          },
+          {
+            "name": "ReconciliationRecorded",
+            "data": "D-RECONCILIATION",
+            "producer": "A21",
+            "consumers": []
+          },
+          {
+            "name": "GrantRecordRecorded",
+            "data": "D-GRANT-RECORD",
+            "producer": "A21",
+            "consumers": []
+          }
+        ],
+        "agents": [
+          {
+            "id": "AGT-recipient-diligence",
+            "name": "Recipient diligence agent",
+            "tools": [
+              "API-A06-SCREEN"
+            ],
+            "reads": [
+              "D-GRANT-RECOMMENDATION",
+              "D-ELIGIBILITY-RESULT"
+            ],
+            "escalatesTo": [
+              "R-DUE-DILIGENCE-ANALYST"
+            ],
+            "boundaries": [
+              "May invoke only the operations listed as tools; the allowlist is fixed at deployment.",
+              "May not grant, modify or request permissions for itself or any principal.",
+              "May raise a concern; may not clear a concern raised by a control or a human.",
+              "May not approve or authorise any operation reserved to a human role.",
+              "Escalates when confidence is below threshold, inputs conflict, or a case matches no known pattern."
+            ],
+            "evaluationCriteria": [
+              "A06: accuracy against an independently labelled sample; escalation rate within the assumed range"
+            ]
+          }
+        ],
+        "grants": [
+          {
+            "principal": "service:svc-cap-grant-intake",
+            "api": "API-A02",
+            "right": "execute"
+          },
+          {
+            "principal": "service:svc-cap-recipient-diligence",
+            "api": "API-A05",
+            "right": "execute"
+          },
+          {
+            "principal": "agent:AGT-recipient-diligence",
+            "api": "API-A06-SCREEN",
+            "right": "execute"
+          },
+          {
+            "principal": "role:R-DUE-DILIGENCE-ANALYST",
+            "api": "API-A06",
+            "right": "approve"
+          },
+          {
+            "principal": "service:svc-cap-grant-authorization",
+            "api": "API-A10",
+            "right": "execute"
+          },
+          {
+            "principal": "role:R-SPONSOR-OFFICER",
+            "api": "API-A11",
+            "right": "approve"
+          },
+          {
+            "principal": "service:svc-cap-fund-liquidity",
+            "api": "API-A13",
+            "right": "execute"
+          },
+          {
+            "principal": "service:svc-independent-verification",
+            "api": "API-A16",
+            "right": "execute"
+          },
+          {
+            "principal": "service:svc-cap-disbursement",
+            "api": "API-A18",
+            "right": "execute"
+          },
+          {
+            "principal": "service:svc-cap-disbursement",
+            "api": "API-A19",
+            "right": "execute"
+          },
+          {
+            "principal": "service:svc-cap-fund-accounting",
+            "api": "API-A21",
+            "right": "execute"
+          }
+        ],
+        "controls": [
+          {
+            "constraint": "C-4966-ELIGIBLE-RECIPIENT",
+            "obligation": "consider D-CHARITY-REFERENCE",
+            "coveredBy": [
+              "A05"
+            ],
+            "auditEvidence": [
+              "D-ELIGIBILITY-RESULT"
+            ]
+          },
+          {
+            "constraint": "C-4966-ELIGIBLE-RECIPIENT",
+            "obligation": "retain record of D-ELIGIBILITY-RESULT",
+            "coveredBy": [
+              "A05",
+              "A06",
+              "A10"
+            ],
+            "auditEvidence": [
+              "D-ELIGIBILITY-RESULT"
+            ]
+          },
+          {
+            "constraint": "C-4967-NO-PROHIBITED-BENEFIT",
+            "obligation": "no automated clearance",
+            "coveredBy": [
+              "A06"
+            ],
+            "auditEvidence": [
+              "D-PURPOSE-ASSESSMENT"
+            ]
+          },
+          {
+            "constraint": "C-4967-NO-PROHIBITED-BENEFIT",
+            "obligation": "retain record of D-PURPOSE-ASSESSMENT",
+            "coveredBy": [
+              "A06",
+              "A10"
+            ],
+            "auditEvidence": [
+              "D-PURPOSE-ASSESSMENT"
+            ]
+          },
+          {
+            "constraint": "C-OFAC-SANCTIONS",
+            "obligation": "consider D-CHARITY-REFERENCE",
+            "coveredBy": [
+              "A05"
+            ],
+            "auditEvidence": [
+              "D-ELIGIBILITY-RESULT"
+            ]
+          },
+          {
+            "constraint": "C-SPONSOR-LEGAL-CONTROL",
+            "obligation": "retain record of D-GRANT-RECORD",
+            "coveredBy": [
+              "A21"
+            ],
+            "auditEvidence": [
+              "D-GRANT-APPROVAL",
+              "D-RECONCILIATION",
+              "D-GRANT-RECORD"
+            ]
+          },
+          {
+            "constraint": "C-SPONSOR-LEGAL-CONTROL",
+            "obligation": "consider D-PURPOSE-ASSESSMENT",
+            "coveredBy": [
+              "A06",
+              "A10"
+            ],
+            "auditEvidence": [
+              "D-GRANT-APPROVAL",
+              "D-RECONCILIATION",
+              "D-GRANT-RECORD"
+            ]
+          },
+          {
+            "constraint": "C-LARGE-GRANT-AUTHORITY",
+            "obligation": "human authorisation by R-SPONSOR-OFFICER",
+            "coveredBy": [
+              "A11"
+            ],
+            "auditEvidence": [
+              "D-LARGE-GRANT-AUTHORIZATION"
+            ]
+          },
+          {
+            "constraint": "C-PAYEE-VERIFICATION",
+            "obligation": "independent check",
+            "coveredBy": [
+              "A16"
+            ],
+            "auditEvidence": [
+              "D-PAYEE-VERIFICATION"
+            ]
+          },
+          {
+            "constraint": "C-PAYEE-VERIFICATION",
+            "obligation": "consider D-PAYEE-BANK-DETAILS",
+            "coveredBy": [
+              "A16"
+            ],
+            "auditEvidence": [
+              "D-PAYEE-VERIFICATION"
+            ]
+          },
+          {
+            "constraint": "C-AVAILABLE-BALANCE",
+            "obligation": "consider D-FUND-ACCOUNT",
+            "coveredBy": [
+              "A02",
+              "A13"
+            ],
+            "auditEvidence": [
+              "D-REQUEST-VALIDATION"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "element": "API-A02",
+            "step": "A02",
+            "activities": [
+              "A02"
+            ],
+            "constraints": [
+              "C-AVAILABLE-BALANCE"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013"
+            ]
+          },
+          {
+            "element": "API-A05",
+            "step": "A05",
+            "activities": [
+              "A05",
+              "A08"
+            ],
+            "constraints": [
+              "C-4966-ELIGIBLE-RECIPIENT",
+              "C-OFAC-SANCTIONS"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-001",
+              "EV-DAF-003"
+            ]
+          },
+          {
+            "element": "API-A06",
+            "step": "A06",
+            "activities": [
+              "A06"
+            ],
+            "constraints": [
+              "C-4967-NO-PROHIBITED-BENEFIT"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-002",
+              "EV-DAF-006"
+            ]
+          },
+          {
+            "element": "API-A06-SCREEN",
+            "step": "A06",
+            "activities": [
+              "A06"
+            ],
+            "constraints": [
+              "C-4967-NO-PROHIBITED-BENEFIT"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-002",
+              "EV-DAF-006"
+            ]
+          },
+          {
+            "element": "API-A10",
+            "step": "A10",
+            "activities": [
+              "A10"
+            ],
+            "constraints": [
+              "C-SPONSOR-LEGAL-CONTROL"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-006"
+            ]
+          },
+          {
+            "element": "API-A11",
+            "step": "A11",
+            "activities": [
+              "A11"
+            ],
+            "constraints": [
+              "C-LARGE-GRANT-AUTHORITY"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-005"
+            ]
+          },
+          {
+            "element": "API-A13",
+            "step": "A13",
+            "activities": [
+              "A13"
+            ],
+            "constraints": [],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013"
+            ]
+          },
+          {
+            "element": "API-A16",
+            "step": "A16",
+            "activities": [
+              "A16"
+            ],
+            "constraints": [
+              "C-PAYEE-VERIFICATION"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-019"
+            ]
+          },
+          {
+            "element": "API-A18",
+            "step": "A18",
+            "activities": [
+              "A18"
+            ],
+            "constraints": [],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013"
+            ]
+          },
+          {
+            "element": "API-A19",
+            "step": "A19",
+            "activities": [
+              "A19"
+            ],
+            "constraints": [],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013"
+            ]
+          },
+          {
+            "element": "API-A21",
+            "step": "A21",
+            "activities": [
+              "A21"
+            ],
+            "constraints": [
+              "C-SPONSOR-LEGAL-CONTROL"
+            ],
+            "outcome": "OUT-GRANT-DELIVERED",
+            "evidence": [
+              "EV-DAF-004",
+              "EV-DAF-013",
+              "EV-DAF-006"
+            ]
+          }
+        ],
+        "roadmap": [
+          {
+            "phase": 1,
+            "name": "System of record, events and deterministic rules",
+            "steps": [
+              "A02",
+              "A05",
+              "A10",
+              "A13",
+              "A16",
+              "A18",
+              "A19",
+              "A21"
+            ],
+            "gate": "Replaced handoffs verified in parallel run; deterministic rules pass property and regression tests."
+          },
+          {
+            "phase": 2,
+            "name": "AI-assisted human work and authorisation support",
+            "steps": [
+              "A11"
+            ],
+            "gate": "Assisted effort measured against baseline; no loss of decision quality on sampled cases."
+          },
+          {
+            "phase": 3,
+            "name": "Supervised and screening agents",
+            "steps": [
+              "A06"
+            ],
+            "gate": "Agent evaluation passes on held-out labelled cases; escalation and error rates within assumptions; human approval."
+          }
+        ],
+        "violations": []
+      },
+      "lenses": [
+        {
+          "lens": "clarity-lean-brief",
+          "method": "Prepares Clarity Lean inputs from the model. Does not perform a Clarity review; a reviewer must.",
+          "stance": "defer",
+          "recommendation": "Wait: superior at expected values only; the combined adverse corner reverses it and the inputs are largely unverified. Measure effort, exception rates and volume first.",
+          "findings": [
+            {
+              "subject": "WF-DAF-GRANT",
+              "kind": "decision",
+              "statement": "Decision: adopt the redesigned \u0027Grant recommendation to disbursement\u0027 (reinvention)?"
+            },
+            {
+              "subject": "evidence",
+              "kind": "evidence-check",
+              "statement": "Evidence basis across the model: verified: 8, reported: 4, assumed: 3, illustrative: 5."
+            },
+            {
+              "subject": "rival",
+              "kind": "strongest-rival",
+              "statement": "Rival: keep the current structure and automate in place (superficial automation); compare before adopting."
+            },
+            {
+              "subject": "EV-DAF-007",
+              "kind": "evidence-conflict",
+              "statement": "Conflicts with EV-DAF-011; unresolved and carried forward."
+            },
+            {
+              "subject": "A01",
+              "kind": "hypothesis",
+              "statement": "replaced-by-event: handoff removed: shared system of record and an event replace re-keying and forwarding"
+            },
+            {
+              "subject": "A03",
+              "kind": "hypothesis",
+              "statement": "eliminated: rework prevented at source by validation at capture (hypothesis)"
+            },
+            {
+              "subject": "A04",
+              "kind": "hypothesis",
+              "statement": "replaced-by-event: internal queue removed: the next step is triggered by an event"
+            },
+            {
+              "subject": "A07",
+              "kind": "hypothesis",
+              "statement": "replaced-by-event: handoff removed: shared system of record and an event replace re-keying and forwarding"
+            },
+            {
+              "subject": "A08",
+              "kind": "hypothesis",
+              "statement": "merged: duplicates information or a control already established (into A05)"
+            },
+            {
+              "subject": "A09",
+              "kind": "hypothesis",
+              "statement": "replaced-by-event: internal queue removed: the next step is triggered by an event"
+            },
+            {
+              "subject": "A12",
+              "kind": "hypothesis",
+              "statement": "replaced-by-event: status published as an event; interested parties subscribe"
+            },
+            {
+              "subject": "A17",
+              "kind": "hypothesis",
+              "statement": "replaced-by-event: handoff removed: shared system of record and an event replace re-keying and forwarding"
+            },
+            {
+              "subject": "A22",
+              "kind": "hypothesis",
+              "statement": "eliminated: produces no information required by the outcome, a decision or a governing constraint"
+            }
+          ],
+          "limitations": [
+            "Clarity has no machine-readable model or API; this brief follows its documented Lean structure.",
+            "Clarity\u0027s own 2026 research does not support claims that it improves decision accuracy."
+          ]
+        },
+        {
+          "lens": "edf-diagnostic-packet",
+          "method": "Prepares EDF v0.3 inputs (manifestations, origins, propagation, control points). Does not perform an EDF diagnosis.",
+          "stance": "proceed-with-safeguards",
+          "recommendation": "Add fallback and independent monitoring before deploying agents at A06; they are single points of failure.",
+          "findings": [
+            {
+              "subject": "WF-DAF-GRANT",
+              "kind": "manifestation",
+              "statement": "Current structure: 22 activities, 9 human handoffs, 15,240 expected queue minutes."
+            },
+            {
+              "subject": "A01",
+              "kind": "origin",
+              "statement": "organizational: handoff or queue between parties"
+            },
+            {
+              "subject": "A03",
+              "kind": "origin",
+              "statement": "informational: defects created upstream"
+            },
+            {
+              "subject": "A04",
+              "kind": "origin",
+              "statement": "organizational: handoff or queue between parties"
+            },
+            {
+              "subject": "A07",
+              "kind": "origin",
+              "statement": "organizational: handoff or queue between parties"
+            },
+            {
+              "subject": "A08",
+              "kind": "origin",
+              "statement": "organizational: duplicated control or information"
+            },
+            {
+              "subject": "A09",
+              "kind": "origin",
+              "statement": "organizational: handoff or queue between parties"
+            },
+            {
+              "subject": "A17",
+              "kind": "origin",
+              "statement": "organizational: handoff or queue between parties"
+            },
+            {
+              "subject": "A22",
+              "kind": "origin",
+              "statement": "organizational: activity without a required output"
+            },
+            {
+              "subject": "A05",
+              "kind": "propagation",
+              "statement": "A failure propagates to 10 downstream step(s)."
+            },
+            {
+              "subject": "A02",
+              "kind": "propagation",
+              "statement": "A failure propagates to 9 downstream step(s)."
+            },
+            {
+              "subject": "A06",
+              "kind": "propagation",
+              "statement": "A failure propagates to 9 downstream step(s)."
+            },
+            {
+              "subject": "A10",
+              "kind": "propagation",
+              "statement": "A failure propagates to 8 downstream step(s)."
+            },
+            {
+              "subject": "A13",
+              "kind": "propagation",
+              "statement": "A failure propagates to 6 downstream step(s)."
+            },
+            {
+              "subject": "A14",
+              "kind": "propagation",
+              "statement": "A failure propagates to 5 downstream step(s)."
+            },
+            {
+              "subject": "A11",
+              "kind": "propagation",
+              "statement": "A failure propagates to 4 downstream step(s)."
+            },
+            {
+              "subject": "A15",
+              "kind": "propagation",
+              "statement": "A failure propagates to 4 downstream step(s)."
+            },
+            {
+              "subject": "A16",
+              "kind": "propagation",
+              "statement": "A failure propagates to 4 downstream step(s)."
+            },
+            {
+              "subject": "A18",
+              "kind": "propagation",
+              "statement": "A failure propagates to 3 downstream step(s)."
+            },
+            {
+              "subject": "A19",
+              "kind": "propagation",
+              "statement": "A failure propagates to 2 downstream step(s)."
+            },
+            {
+              "subject": "A20",
+              "kind": "propagation",
+              "statement": "A failure propagates to 1 downstream step(s)."
+            },
+            {
+              "subject": "A02",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A05",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A06",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A10",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A11",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A13",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A14",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A15",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A16",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A18",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A19",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "A20",
+              "kind": "control-point",
+              "statement": "Single point of failure: every terminal step depends on it; candidate control point."
+            },
+            {
+              "subject": "EV-DAF-006",
+              "kind": "unknown",
+              "statement": "recommendation: Control rule: AI may add a flag, never clear one; approval authority must stay human or deterministic."
+            },
+            {
+              "subject": "EV-DAF-013",
+              "kind": "unknown",
+              "statement": "assumption: Hands-on minutes, queue delays and exception rates per activity in the composite workflow."
+            },
+            {
+              "subject": "EV-DAF-014",
+              "kind": "unknown",
+              "statement": "assumption: Loaded labour cost of $55\u2013$95 per hour for grants operations, due-diligence and compliance roles."
+            },
+            {
+              "subject": "EV-DAF-015",
+              "kind": "unknown",
+              "statement": "assumption: A representative mid-sized sponsor processes 20,000\u201360,000 grants per year."
+            },
+            {
+              "subject": "EV-DAF-016",
+              "kind": "unknown",
+              "statement": "hypothesis: AI assistance leaves 30\u201370% of human review effort on cases a human still handles."
+            },
+            {
+              "subject": "EV-DAF-017",
+              "kind": "unknown",
+              "statement": "assumption: Platform, evaluation and monitoring costs for the redesign; one-time build cost amortised over 3 years."
+            },
+            {
+              "subject": "EV-DAF-018",
+              "kind": "unknown",
+              "statement": "assumption: Probability and cost of an undetected material grant error (taxable distribution, misdirected payment)."
+            },
+            {
+              "subject": "EV-DAF-020",
+              "kind": "unknown",
+              "statement": "assumption: Agent escalation share, escalation effort, and per-step inference and software costs."
+            }
+          ],
+          "limitations": [
+            "EDF v0.3 has no schema or executable form; this packet maps model facts onto its stated grammar.",
+            "EDF\u0027s comparative research reports no measurable advantage over generic analysis.",
+            "Propagation is structural (data dependencies), not a probabilistic failure model."
+          ]
+        }
+      ],
+      "disagreements": [
+        {
+          "topic": "adoption",
+          "positions": [
+            {
+              "source": "economics",
+              "position": "superior-at-expected"
+            },
+            {
+              "source": "clarity-lean-brief",
+              "position": "Wait: superior at expected values only; the combined adverse corner reverses it and the inputs are largely unverified. Measure effort, exception rates and volume first."
+            }
+          ]
+        },
+        {
+          "topic": "deployment risk",
+          "positions": [
+            {
+              "source": "economics",
+              "position": "superior-at-expected"
+            },
+            {
+              "source": "edf-diagnostic-packet",
+              "position": "Add fallback and independent monitoring before deploying agents at A06; they are single points of failure."
+            }
+          ]
+        }
+      ],
+      "simulation": [
+        {
+          "label": "current",
+          "transactions": 2000,
+          "meanCycleMinutes": 23588.503,
+          "p50CycleMinutes": 23127.0606,
+          "p90CycleMinutes": 30104.8242,
+          "humanMinutesPerTxn": 46.8304,
+          "utilization": [
+            {
+              "role": "R-DUE-DILIGENCE-ANALYST",
+              "utilization": 0.8813
+            },
+            {
+              "role": "R-GRANTS-ASSOCIATE",
+              "utilization": 0.7899
+            },
+            {
+              "role": "R-TREASURY-OPERATIONS",
+              "utilization": 0.6217
+            },
+            {
+              "role": "R-FUND-ACCOUNTANT",
+              "utilization": 0.5249
+            },
+            {
+              "role": "R-COMPLIANCE-OFFICER",
+              "utilization": 0.5047
+            },
+            {
+              "role": "R-SPONSOR-OFFICER",
+              "utilization": 0.0813
+            }
+          ]
+        },
+        {
+          "label": "redesign",
+          "transactions": 2000,
+          "meanCycleMinutes": 16552.4743,
+          "p50CycleMinutes": 16082.3597,
+          "p90CycleMinutes": 22831.7423,
+          "humanMinutesPerTxn": 1.3951,
+          "utilization": [
+            {
+              "role": "R-SPONSOR-OFFICER",
+              "utilization": 0.052
+            },
+            {
+              "role": "R-DUE-DILIGENCE-ANALYST",
+              "utilization": 0.0479
+            },
+            {
+              "role": "R-FUND-ACCOUNTANT",
+              "utilization": 0.0087
+            },
+            {
+              "role": "R-GRANTS-ASSOCIATE",
+              "utilization": 0.0071
+            },
+            {
+              "role": "R-COMPLIANCE-OFFICER",
+              "utilization": 0.0052
+            },
+            {
+              "role": "R-TREASURY-OPERATIONS",
+              "utilization": 0.0036
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

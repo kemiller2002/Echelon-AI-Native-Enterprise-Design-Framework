@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Echelon AI-Native Enterprise Design Framework: a modular monolith.
+       Pure, data-only core: nothing here performs I/O. -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);FS3370</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Primitives.fs" />
+    <Compile Include="Evidence.fs" />
+    <Compile Include="Model.fs" />
+    <Compile Include="Validation.fs" />
+    <Compile Include="Responsibility.fs" />
+    <Compile Include="Reinvention.fs" />
+    <Compile Include="Economics.fs" />
+    <Compile Include="Architecture.fs" />
+    <Compile Include="Lenses.fs" />
+    <Compile Include="Simulation.fs" />
+    <Compile Include="Analysis.fs" />
+    <Compile Include="Json.fs" />
+    <Compile Include="Markdown.fs" />
+    <Compile Include="Knowledge.fs" />
+  </ItemGroup>
+</Project>
